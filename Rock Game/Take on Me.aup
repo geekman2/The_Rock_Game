@@ -1,0 +1,67 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="Take on Me_data" version="1.3.0" audacityversion="2.0.1" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="5.9709241952" rate="48000.0">
+	<tags>
+		<tag name="major_brand" value="mp42"/>
+		<tag name="Software" value="Lavf54.2.100"/>
+		<tag name="minor_version" value="0"/>
+		<tag name="compatible_brands" value="isommp42"/>
+		<tag name="Encoding time" value="2011-03-09 00:57:18"/>
+	</tags>
+	<wavetrack name="Take on Me" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="1318389">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000518.au" len="140174" min="-0.804156" max="0.793078" rms="0.088718"/>
+				</waveblock>
+				<waveblock start="140174">
+					<simpleblockfile filename="e0000a4f.au" len="191179" min="-0.712516" max="0.708652" rms="0.101669"/>
+				</waveblock>
+				<waveblock start="331353">
+					<simpleblockfile filename="e000004d.au" len="191179" min="-0.767148" max="0.71549" rms="0.105814"/>
+				</waveblock>
+				<waveblock start="522532">
+					<simpleblockfile filename="e0000b55.au" len="171637" min="-0.901926" max="0.759821" rms="0.135476"/>
+				</waveblock>
+				<waveblock start="694169">
+					<simpleblockfile filename="e0000040.au" len="171637" min="-0.823074" max="0.855856" rms="0.141368"/>
+				</waveblock>
+				<waveblock start="865806">
+					<simpleblockfile filename="e0000207.au" len="262144" min="-0.862705" max="0.874204" rms="0.154328"/>
+				</waveblock>
+				<waveblock start="1127950">
+					<simpleblockfile filename="e0000a9d.au" len="190439" min="-0.864983" max="0.706437" rms="0.139487"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Take on Me" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="1318389">
+				<waveblock start="0">
+					<simpleblockfile filename="e000021a.au" len="140174" min="-0.707709" max="0.677495" rms="0.112588"/>
+				</waveblock>
+				<waveblock start="140174">
+					<simpleblockfile filename="e000004f.au" len="191179" min="-0.726126" max="0.723136" rms="0.131428"/>
+				</waveblock>
+				<waveblock start="331353">
+					<simpleblockfile filename="e0000931.au" len="191179" min="-0.787142" max="0.754496" rms="0.134523"/>
+				</waveblock>
+				<waveblock start="522532">
+					<simpleblockfile filename="e0000ae2.au" len="171637" min="-0.855533" max="0.897594" rms="0.16152"/>
+				</waveblock>
+				<waveblock start="694169">
+					<simpleblockfile filename="e000023b.au" len="171637" min="-0.956579" max="0.890385" rms="0.164086"/>
+				</waveblock>
+				<waveblock start="865806">
+					<simpleblockfile filename="e0000e95.au" len="262144" min="-0.870003" max="0.915186" rms="0.178595"/>
+				</waveblock>
+				<waveblock start="1127950">
+					<simpleblockfile filename="e000030e.au" len="190439" min="-0.807871" max="0.780659" rms="0.160591"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>
