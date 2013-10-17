@@ -11,7 +11,6 @@ from Tkinter import *
 from ttk import*
 import winsound
 from random import*
-import os
 from PIL import Image,ImageTk
 
 diomg = ['Billy','Bonnie','Ashley','Walter','Sapphira','Elam','Shiloh','Gabriel','Acacia']
@@ -26,8 +25,6 @@ RA = ['Will','Alyss','Horace','Halt','Evanlyn','Erak','Gilan','Morgarath','Oberj
 LOZ = ['Link','Zelda','Fi','Farore','Din','Nayru','Ganon','Ganondorf','Fierce_Deity','Saria','Malon','Ghirahim','Groose']
 other=['Squirrels','Owls','Dantes','Guru_Guru','Gummy']
 
-Fibonacci = [3,5,8,13,21,34]
-
 SeriesList = [diomb,diomg,chuckg,chuckb,pjog,pjob,dk,psych,RA,LOZ,]
 SeriesList2=['Dragons in Our Midst Good','Dragons in Our Midst Bad','Chuck Good','Chuck Bad','Percy Jackson Good','Percy Jackson Bad','Dragonkeeper','Psych','Rangers Apprentice','Legend Of Zelda']
 
@@ -39,41 +36,34 @@ Characters.extend(other)
 
 buttons =[]
 
-dirs = os.path.dirname(__file__)
-#dirs = 'C:/Users/Geekman2/Dropbox/Tessa and Devon/Rock_Game/'
-dirs2 = dirs+'\\Rocks\\'
+dirs = 'C:/Users/Geekman2/Dropbox/Tessa and Devon/Rock_Game/'
+dirs2 = 'C:/Users/Geekman2/Dropbox/Tessa and Devon/Rock_Game/Rocks/'
 rocks = ['rock2','rock3','rock4','rock5','rock6','rock7','rock8','rock9','rock10','rock11','rock12','rock13','rock14','rock15','rock16','rock17','rock18','rock19','rock20']
 
 def CharacterWindow(Character,final=False):
     #Quote = Quotes[Character]
-    picname=dirs+'\\Pictures\\'+Character+'.jpg'
-
+    picname='/Pictures/'+Character+'.jpg'
     if final == True:
         subWindow=Tk()
     else:
         subWindow = Toplevel()
-
     subWindow.minsize(200,200)
     subWindow.title(Character)
     subWindow.geometry('+700+100')
     #says = Label(subWindow,text = Quote)
     #says.pack(side=BOTTOM)
-
-    background = ImageTk.PhotoImage(Image.open(dirs+'\\Gui Pics\\blue gradient.jpg'))
+    background = ImageTk.PhotoImage(Image.open('/Gui Pics/blue gradient.jpg'))
     background_label = Label(subWindow, image=background)
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
-
     img = ImageTk.PhotoImage(Image.open(picname))
     image1 = Label(subWindow,image=img)
     image1.pack(side=TOP)
-
     subWindow.mainloop()
 
 def callback(Character,window):
     global buttons
-    labelFrame.destroy()
-    labelFramer()
-    WhosLeft()
+    WhosLeft(window)
+
 
     Cindex = Characters.index(Character)
     alreadyDone.append(Character)
@@ -83,7 +73,7 @@ def callback(Character,window):
     buttons[Cindex].lower()
 
     if len(alreadyDone)==len(Characters):
-        gameWindow.destroy()
+        window.destroy()
         youAre = Tk()
         youAre.geometry('+700+300')
         Label(youAre,text="You Are...",font = ('Helvetica',74)).pack()
@@ -91,23 +81,21 @@ def callback(Character,window):
         youAre.after(5000,lambda:youAre.destroy())
         youAre.mainloop()
         CharacterWindow(Character,True)
-
     else:
         CharacterWindow(Character)
+
 
 def Buttons(window):
     count = 0
     Colnum=1
     Rownum=1
-    MaxColnum = 0
     Bname = 'Button'+str(count)
     global buttons
     buttons=[]
     shuffle(Characters)
-    fibs = []
 
     for i in Characters:
-        pic = ImageTk.PhotoImage(Image.open(dirs2+'\\'+choice(rocks)+'.gif'))
+        pic = ImageTk.PhotoImage(Image.open('/Rocks'+choice(rocks)+'.gif'))
         button = Button(window,image=pic,command=lambda i=i:callback(i,window))
         button.image=pic
         count = count+1
@@ -115,51 +103,43 @@ def Buttons(window):
         if i in alreadyDone:
             buttons[Characters.index(i)]=Label(window,text=i,font=('Comic Sans',12))
 
-    for thebutton in buttons:
-##        if len(Characters) < 20:
-##            MaxColnum = 5
-##        elif len(Characters) > 20 and len(Characters) < 40:
-##            MaxColnum = 10
-##        elif len(Characters) > 40:
-##            MaxColnum = 20
-        MaxColnum = 20
-
-        if Colnum > MaxColnum:
+    for i in buttons:
+        if Colnum > 20:
             Colnum=1
             Rownum = Rownum+1
-        thebutton.grid(row=Rownum,column=Colnum)
+        i.grid(row=Rownum,column=Colnum)
         Colnum = Colnum+1
 
-def WhosLeft():
+def WhosLeft(window):
+##    labels=[]
+##    rownum=0
+##    colnum=0
+##    whosLeft = Toplevel()
+##    whosLeft.after(8000,lambda:whosLeft.destroy())
+##    if len(Characters2) > 2:
+##        for i in Characters2:
+##            labl = Label(whosLeft,text=i)
+##            labels.append(labl)
+##        for i in labels:
+##            i.grid(row=rownum,column=colnum)
+##            rownum=rownum+1
+##            if rownum>20:
+##                rownum=0
+##                colnum=colnum+1
     count = 0
     var = StringVar()
     var.set('')
-    irrelevantVariable = ''
-    theText = ''
-
     for i in Characters2:
-            var.set(var.get()+' \n '+i)
-            print var.get()
+        var.set(var.get()+' \n '+i)
+        print var.get()
 
     if len(Characters2)>2:
         if len(Characters2)>30:
-            theText = "There are too \n many people left \n this list \n wouldn't make \n any sense"
-            irrelevantVariable = Label(labelFrame,background='#236DAC',text = theText)
-            irrelevantVariable.grid(column=22,row=0,sticky = N+E)
-
+            Label(window,text = "There are too \n many people remaining \n this list \n wouldn't make\n  any sense")
         else:
-            try:
-                irrelevantVariable.grid_forget()
-            except AttributeError:
-                pass
-            theText = theText = var.get()
-            charList = Label(labelFrame,background='#236DAC',text = theText)
-            charList.grid(column=22,row=0,sticky = N+E)
-            print type(charList)
-
+            Label(window,text = var.get()).grid(column=100,row=0)
     else:
-        theText = "There's only a \n few people left \n that means you \n get to find out \n who you are the \n fun way"
-        Label(labelFrame,background='#236DAC',text = theText).grid(column=22,row=0,sticky = N+E)
+        Label(window,text="Oh, you're close to the end! /n You'll just have to find out /n who's left the fun way!").grid(column=0)
 
 def pickSeries():
     pickIt = Tk()
@@ -168,7 +148,6 @@ def pickSeries():
     labls = []
     count = 0
     rownum=0
-
     for i in SeriesList:
         chekbox = Checkbutton(pickIt,command= lambda i=i:Characters.extend(i))
         cheks.append(chekbox)
@@ -189,40 +168,20 @@ def pickSeries():
     pickIt.mainloop()
     MainPage()
 
-def labelFramer():
-    global labelFrame
-    labelFrame = Frame(gameWindow)
-    labelFrame.grid(column=2,row=0,sticky = N)
-
-
 def MainPage():
     global Characters2
-    global gameWindow
-    global gameFrame
-
     Characters2 = Characters[:]
 
     gameWindow=Tk()
-    gameWindow.geometry('+10+100')
-    gameWindow.title('The Rock Game')
+    gameWindow.geometry('+450+100')
     #gameWindow.maxsize(900,506)
 
-    gameFrame = Frame(gameWindow)
-    labelFramer()
-
-
-    background = ImageTk.PhotoImage(Image.open(dirs+'\\Gui Pics\\blue gradient3.jpg'))
-    background_label2 = Label(gameFrame, image=background)
-    background_label2.place(x=0, y=50, relwidth=1, relheight=1)
-
+    background = ImageTk.PhotoImage(Image.open('\\Gui Pics\\other gradient.png'))
     background_label = Label(gameWindow, image=background)
-    background_label.place(x=0,y=0,relwidth=1,relheight=1)
-    background_label.lower()
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-    gameFrame.grid(column=1,row=0,sticky = N)
+    Buttons(gameWindow)
 
-    Buttons(gameFrame)
 
     gameWindow.mainloop()
-
 pickSeries()
